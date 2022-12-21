@@ -1,6 +1,8 @@
 package com.example.calcimc;
 
 import android.annotation.SuppressLint;
+import android.renderscript.Sampler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -8,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,10 +30,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button btnCalc = findViewById(R.id.btnCalc);
+        Button btnAjd = findViewById(R.id.btnAjuda);
         txtTpIMC = findViewById(R.id.textTpIMC);
         txtVlrIMC = findViewById(R.id.textVlrIMC);
         editAlt = findViewById(R.id.editAlt);
         editPs = findViewById(R.id.editPs);
+
+        btnAjd.setOnClickListener(view -> {
+            AlertDialog.Builder msgAjuda = new AlertDialog.Builder(this);
+            msgAjuda.setTitle("AJUDA");
+            msgAjuda.setMessage("PARA CALCULAR SEU IMC BASTA PREENCHER OS CAMPOS: " +
+                    "ALTURA EM METROS E PESO EM KILO GRAMAS. " +
+                    "DEPOIS CLICAR EM CALCULAR. ");
+            msgAjuda.show();
+        });
 
         btnCalc.setOnClickListener(view -> {
             try{
@@ -45,11 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     public void calcularIMC (){
-        BigDecimal altura = new BigDecimal(editAlt.getText().toString());
-        BigDecimal peso = new BigDecimal(editPs.getText().toString());
 
-        IMC = new BigDecimal(altura.multiply(altura).toString());
-        IMC = peso.divide(IMC);
+        BigDecimal altura = new BigDecimal(editAlt.getText().toString().replace(",", "."));
+        BigDecimal peso = new BigDecimal(editPs.getText().toString().replace(",", "."));
+
+        IMC = new BigDecimal("0").setScale(2, RoundingMode.HALF_EVEN);
+        IMC = altura.multiply(altura);
+        IMC = peso.divide(IMC, MathContext.DECIMAL64);
 
         txtVlrIMC.setText(IMC.setScale(2, RoundingMode.HALF_EVEN).toString());
     }

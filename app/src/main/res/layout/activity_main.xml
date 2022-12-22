@@ -4,41 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/actividy_style"
+    android:clickable="true"
+    android:focusableInTouchMode="true">
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/editAlt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/dosis_variable"/>
 
     <EditText
         android:id="@+id/editAlt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
+        android:digits="0123456789.,"
         android:ems="10"
+        android:fontFamily="@font/dosis_variable"
+        android:gravity="center"
         android:hint="@string/altura_valor"
         android:inputType="number"
-        android:digits="0123456789.,"
-        android:minHeight="48dp"
-        android:textColorHint="#546E7A"
+        android:minHeight="60dp"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/editPs"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/editPs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
+        android:digits="0123456789.,"
         android:ems="10"
+        android:fontFamily="@font/dosis_variable"
+        android:gravity="center"
         android:hint="@string/peso_valor"
         android:inputType="number"
-        android:digits="0123456789.,"
-        android:minHeight="48dp"
-        android:textColorHint="#546E7A"
+        android:minHeight="60dp"
+        android:textColorHint="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/btnCalc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editAlt"
-        android:gravity="center"/>
+        tools:ignore="TextContrastCheck" />
 
     <LinearLayout
         android:id="@+id/layoutRst"
@@ -54,35 +78,47 @@
             android:id="@+id/textVlrIMC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="60sp"
-            android:gravity="center"/>
+            android:textSize="100sp"
+            android:gravity="center"
+            android:fontFamily="@font/dosis_variable"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/textTpIMC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:gravity="center"/>
+            android:textSize="40sp"
+            android:gravity="center"
+            android:fontFamily="@font/dosis_variable"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
     <Button
         android:id="@+id/btnCalc"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_style"
         android:text="@string/calcular"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/layoutRst"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editPs" />
+        app:layout_constraintTop_toBottomOf="@+id/editPs"
+        tools:ignore="TextContrastCheck"
+        android:fontFamily="@font/dosis_variable"
+        android:textSize="20sp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/btnAjuda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="@string/ajuda"
+        android:background="@drawable/button_style"
+        android:minHeight="48dp"
+        android:src="@drawable/ic_baseline_help_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 </android.support.constraint.ConstraintLayout>

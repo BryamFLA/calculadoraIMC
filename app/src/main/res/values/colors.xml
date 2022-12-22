@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple">#492648</color>
-    <color name="gray_1">#373737</color>
-    <color name="gray_2">#969696</color>
+    <color name="purple">#FF7F00FE</color>
+    <color name="ciano">#FF50B4C8</color>
+    <color name="gray">#FF282828</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transp">#00000000</color>
 </resources>

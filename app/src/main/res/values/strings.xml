@@ -3,5 +3,4 @@
     <string name="peso_valor"> DIGITE SEU PESO (KG)</string>
     <string name="altura_valor">DIGITE SUA ALTURA (M)</string>
     <string name="calcular">CALCULAR</string>
-    <string name="ajuda">AJUDA</string>
 </resources>

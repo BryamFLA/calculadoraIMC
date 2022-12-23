@@ -1,7 +1,9 @@
 package com.example.calcimc;
 
 import android.annotation.SuppressLint;
-import android.renderscript.Sampler;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private BigDecimal IMC;
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "ResourceAsColor"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -39,28 +41,31 @@ public class MainActivity extends AppCompatActivity {
         editAlt = findViewById(R.id.editAlt);
         editPs = findViewById(R.id.editPs);
 
-        editPs.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b){
-                    esconderTeclado(view);
-                }
+        editPs.setOnFocusChangeListener((view, b) -> {
+            if (!b){
+                esconderTeclado(view);
             }
         });
 
-        editAlt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (!b){
-                    esconderTeclado(view);
-                }
+        editAlt.setOnFocusChangeListener((view, b) -> {
+            if (!b){
+                esconderTeclado(view);
             }
         });
 
         btnAjd.setOnClickListener(view -> {
-            AlertDialog.Builder msgAjuda = new AlertDialog.Builder(this);
+            AlertDialog.Builder msgAjuda = new AlertDialog.Builder(this, R.style.DialogStyle);
+            msgAjuda.setIcon(R.drawable.ic_baseline_help_24);
             msgAjuda.setTitle("AJUDA");
-            msgAjuda.setMessage("PARA CALCULAR O INDICE MÉDIO CORPORAL BASTA, PREENCHER A ALTURA EM METROS E PESO EM KILO GRAMAS, DEPOIS CLICAR EM CALCULAR.");
+            msgAjuda.setMessage(
+                    "PARA UTILIZAR A CALCULADORA BASTA PREENCHER AS INFORMAÇÕES E CLICAR EM CLACULAR!!!\n\n"+
+                    "O INDICE DE MASSA CORPORAL (IMC), CALCULA O ÍNDICE DE OBESIDADE "+
+                    "ATRAVÉS DA ALTURA E DO PESO.\n\n"+
+                    "PARA SABER MAIS ACESSE O LINK.");
+            msgAjuda.setPositiveButton(R.string.link, (dialogInterface, i) -> startActivity(new Intent
+                    (Intent.ACTION_VIEW, Uri.parse("https://qbemqfaz.com.br/vida-equilibrada/tabela"+
+                            "-imc?gclid=Cj0KCQiAwJWdBhCYARIsAJc4idA8LxUYY5mUJe4R8gItjkkPA0_VNlXJRSOg0"+
+                            "Odr2H-Y4kR83XqltPsaAvVNEALw_wcB"))));
             msgAjuda.show();
         });
 
@@ -68,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
             try{
                 calcularIMC();
                 tipoIMC();
+                editPs.setText("");
+                editAlt.setText("");
             }catch (Exception E){
                 txtVlrIMC.setText("VALOR");
                 txtTpIMC.setText("INVÁLIDO");

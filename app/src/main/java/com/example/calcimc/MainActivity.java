@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
         msgAjuda.setIcon(R.drawable.ic_help_purple);
         msgAjuda.setTitle("AJUDA");
         msgAjuda.setMessage(
-                "PARA UTILIZAR A CALCULADORA BASTA PREENCHER AS INFORMAÇÕES E CLICAR EM CLACULAR!!!\n\n"+
-                        "O INDICE DE MASSA CORPORAL (IMC), CALCULA O ÍNDICE DE OBESIDADE "+
+                "PARA UTILIZAR A CALCULADORA BASTA PREENCHER AS INFORMAÇÕES E CLICAR EM CALCULAR!!!\n\n"+
+                        "O ÍNDICE DE MASSA CORPORAL (IMC), CALCULA O ÍNDICE DE OBESIDADE "+
                         "ATRAVÉS DA ALTURA E DO PESO.\n\n"+
                         "PARA SABER MAIS ACESSE O LINK.");
         msgAjuda.setPositiveButton(R.string.link, (dialogInterface, i) -> startActivity(new Intent

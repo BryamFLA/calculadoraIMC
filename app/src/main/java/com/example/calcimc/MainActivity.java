@@ -1,7 +1,7 @@
 package com.example.calcimc;
 
-import android.annotation.SuppressLint;
-import android.content.DialogInterface;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private BigDecimal IMC;
 
-    @SuppressLint({"SetTextI18n", "ResourceAsColor"})
+    AlertDialog.Builder msgAjuda;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -36,45 +37,32 @@ public class MainActivity extends AppCompatActivity {
 
         Button btnCalc = findViewById(R.id.btnCalc);
         ImageButton btnAjd = findViewById(R.id.btnAjuda);
+
         txtTpIMC = findViewById(R.id.textTpIMC);
         txtVlrIMC = findViewById(R.id.textVlrIMC);
+
         editAlt = findViewById(R.id.editAlt);
         editPs = findViewById(R.id.editPs);
+
+        estilizarBtnAjuda();
 
         editPs.setOnFocusChangeListener((view, b) -> {
             if (!b){
                 esconderTeclado(view);
             }
         });
-
         editAlt.setOnFocusChangeListener((view, b) -> {
             if (!b){
                 esconderTeclado(view);
             }
         });
 
-        btnAjd.setOnClickListener(view -> {
-            AlertDialog.Builder msgAjuda = new AlertDialog.Builder(this, R.style.DialogStyle);
-            msgAjuda.setIcon(R.drawable.ic_baseline_help_24);
-            msgAjuda.setTitle("AJUDA");
-            msgAjuda.setMessage(
-                    "PARA UTILIZAR A CALCULADORA BASTA PREENCHER AS INFORMAÇÕES E CLICAR EM CLACULAR!!!\n\n"+
-                    "O INDICE DE MASSA CORPORAL (IMC), CALCULA O ÍNDICE DE OBESIDADE "+
-                    "ATRAVÉS DA ALTURA E DO PESO.\n\n"+
-                    "PARA SABER MAIS ACESSE O LINK.");
-            msgAjuda.setPositiveButton(R.string.link, (dialogInterface, i) -> startActivity(new Intent
-                    (Intent.ACTION_VIEW, Uri.parse("https://qbemqfaz.com.br/vida-equilibrada/tabela"+
-                            "-imc?gclid=Cj0KCQiAwJWdBhCYARIsAJc4idA8LxUYY5mUJe4R8gItjkkPA0_VNlXJRSOg0"+
-                            "Odr2H-Y4kR83XqltPsaAvVNEALw_wcB"))));
-            msgAjuda.show();
-        });
+        btnAjd.setOnClickListener(view -> msgAjuda.show());
 
         btnCalc.setOnClickListener(view -> {
             try{
                 calcularIMC();
                 tipoIMC();
-                editPs.setText("");
-                editAlt.setText("");
             }catch (Exception E){
                 txtVlrIMC.setText("VALOR");
                 txtTpIMC.setText("INVÁLIDO");
@@ -83,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @SuppressLint("SetTextI18n")
     public void calcularIMC (){
 
         BigDecimal altura = new BigDecimal(editAlt.getText().toString().replace(",", "."));
@@ -96,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         txtVlrIMC.setText(IMC.setScale(2, RoundingMode.HALF_EVEN).toString());
     }
 
-    @SuppressLint("SetTextI18n")
     public void tipoIMC (){
         int imc = IMC.intValue();
         if (imc < 18.5){
@@ -117,5 +103,20 @@ public class MainActivity extends AppCompatActivity {
     public void esconderTeclado (View view){
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    public void estilizarBtnAjuda(){
+        msgAjuda =  new AlertDialog.Builder(this, R.style.DialogStyle);
+        msgAjuda.setIcon(R.drawable.ic_help_purple);
+        msgAjuda.setTitle("AJUDA");
+        msgAjuda.setMessage(
+                "PARA UTILIZAR A CALCULADORA BASTA PREENCHER AS INFORMAÇÕES E CLICAR EM CLACULAR!!!\n\n"+
+                        "O INDICE DE MASSA CORPORAL (IMC), CALCULA O ÍNDICE DE OBESIDADE "+
+                        "ATRAVÉS DA ALTURA E DO PESO.\n\n"+
+                        "PARA SABER MAIS ACESSE O LINK.");
+        msgAjuda.setPositiveButton(R.string.link, (dialogInterface, i) -> startActivity(new Intent
+                (Intent.ACTION_VIEW, Uri.parse("https://qbemqfaz.com.br/vida-equilibrada/tabela"+
+                        "-imc?gclid=Cj0KCQiAwJWdBhCYARIsAJc4idA8LxUYY5mUJe4R8gItjkkPA0_VNlXJRSOg0"+
+                        "Odr2H-Y4kR83XqltPsaAvVNEALw_wcB"))));
     }
 }

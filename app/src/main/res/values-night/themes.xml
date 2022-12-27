@@ -3,10 +3,9 @@
     <style name="Theme.CalcIMC" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple</item>
-        <item name="colorPrimaryDark">@color/black  </item>
+        <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/white</item>
         <!-- Customize your theme here. -->
-
     </style>
     <style name="DialogStyle" parent="@android:style/Theme.Material.Light.Dialog.Alert">
         <item name="android:colorAccent">@color/purple</item>

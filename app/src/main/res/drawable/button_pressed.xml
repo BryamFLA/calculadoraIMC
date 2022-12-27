@@ -4,9 +4,9 @@
     android:shape="rectangle"
     tools:ignore="ExtraText">
 
-    <gradient android:startColor="@color/transp"/>
+    <gradient android:startColor="@color/whiteTransp"
+        android:endColor="@color/whiteTransp"/>
     <corners android:radius="30dp"/>
     <stroke android:width="2dp"
         android:color="@color/white"/>
-
 </shape>

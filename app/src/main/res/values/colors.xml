@@ -2,8 +2,9 @@
 <resources>
     <color name="purple">#FF7F00FE</color>
     <color name="ciano">#FF50B4C8</color>
-    <color name="gray">#FF282828</color>
+    <color name="gray">#FF404040</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transp">#00000000</color>
+    <color name="whiteTransp">#44FFFFFF</color>
 </resources>

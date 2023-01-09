@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                         "ATRAVÉS DA ALTURA E DO PESO.\n\n"+
                         "PARA SABER MAIS ACESSE O LINK.");
         msgAjuda.setPositiveButton(R.string.link, (dialogInterface, i) -> startActivity(new Intent
-                (Intent.ACTION_VIEW, Uri.parse("https://qbemqfaz.com.br/vida-equilibrada/tabela"+
+                (Intent.ACTION_VIEW, Uri.parse("https://tjw8io.csb.app/"+
                         "-imc?gclid=Cj0KCQiAwJWdBhCYARIsAJc4idA8LxUYY5mUJe4R8gItjkkPA0_VNlXJRSOg0"+
                         "Odr2H-Y4kR83XqltPsaAvVNEALw_wcB"))));
     }
